@@ -23,7 +23,7 @@ class Main extends Controller
      */
     public function home(Request $request, Response $response)
     {
-        $apikey = "sdfsdfds0f09dsfds";
+        $apikey = "cc12540abedfa669021307d4ba111d87";
         $bdb = new \Pintlabs_Service_Brewerydb($apikey);
         $bdb->setFormat('php'); // if you want to get php back.  'xml' and 'json' are also valid options.
         $params = array("q" => "lol", "type" => "beer");
@@ -59,6 +59,19 @@ class Main extends Controller
                 'page' => 'About'
             ])
             ->renderInto($response);
+    }
+
+    public function searchProccess(Request $request, Response $response)
+    {
+        return $this->container['theme']
+            ->with([
+                'content' => View::make('page/home')->with(['test' => 'teeeeeeeests']),
+                'page' => 'Home',
+            ])
+            ->renderInto($response);
+
+
+        //return $this->container['theme']->with(['content' => View::make('page/login') ->with(['displayError' => $displayError]), 'page' => 'Login'])->renderInto($response);
     }
 
 }
