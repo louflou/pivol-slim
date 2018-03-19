@@ -1,0 +1,151 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+  font-size: 1em;
+  background: #f7f7f9;
+}
+
+header {
+    padding: 50px;
+    background: #f7f7f9;
+}
+
+header h1 {
+    letter-spacing: 15px;
+}
+nav .navbar {
+    text-align: center;
+}
+.navbar-brand {
+    letter-spacing: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.footer div {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    opacity: 0.4;
+}
+
+.hide {
+    display: none !important;
+}
+
+
+/* Home
+**********************************/
+
+.home .form-inline {
+    display: inline-block;
+    margin: auto;
+}
+
+.home .lead {
+    margin-top: 35px;
+}
+
+.home .card {
+    /*display: none; */
+}
+
+.home .card .results .row {
+    margin-bottom: 25px;
+}
+
+.home .jumbotron .buttons {
+    margin-top: 35px;
+}
+
+.home .jumbotron .page {
+    margin-top: 10px;
+}
+
+.home .jumbotron .ingrediens {
+    margin-top: 30px;
+}
+
+.home .progress {
+    margin: 50px auto;
+    width: 50%;
+}
+
+.home .progress .progress-bar {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.home .alert {
+    margin-top: 25px;
+}
+
+
+/* Advanced
+**********************************/
+
+.advanced .form-inline {
+    display: inline-block;
+    margin: auto;
+}
+
+.advanced .checkboxes {
+    margin: 15px auto;
+}
+
+/* Mobile
+*********************************/
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+
+    #nav {
+        height: 100%;
+        width: 200px;
+        max-height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        -ms-flex-align: initial;
+        flex: initial;
+        display: block;
+    }
+
+    #nav ul li {
+        display: block;
+        width: 100%;
+    }
+
+    #nav button {
+        display: none;
+    }
+
+    #nav .collapse {
+        display: block;
+    }
+
+    .navbar-toggler[aria-expanded="true"] {
+        background: green !important;
+    }
+
+    .jumbotron,
+    .heady {
+        margin-left: 200px;
+    }
+
+
+    footer {
+        display: none;
+    }
+
+}
