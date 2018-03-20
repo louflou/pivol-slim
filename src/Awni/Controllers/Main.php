@@ -55,38 +55,46 @@ class Main extends Controller
         $apikey = "cc12540abedfa669021307d4ba111d87";
         $bdb = new \Pintlabs_Service_Brewerydb($apikey);
         $bdb->setFormat('php'); // if you want to get php back.  'xml' and 'json' are also valid options.
-        $params = array("tes" => $text, "type" => "beer");
+        $params = array("q" => $text, "type" => "beer");
+        $results = "";
 
         try {
-            $results = $bdb->request('beers', $params, 'GET'); // where $params is a keyed array of parameters to send with the API call.
+            $results = $bdb->request('search', $params, 'GET'); // where $params is a keyed array of parameters to send with the API call.
         } catch (Exception $e) {
             $results = array('error' => $e->getMessage());
         }
 
-        //$newResults = $results['data'];
-        $size = sizeof($results['data']);
-        $arr = array();
-        $params = array();
-
-        for($i = 0; $i < 5; $i++) {
-
-            try {
-                $arr[$i] = $bdb->request('beer/' . $results['data'][$i]['id'], $params, 'GET'); // where $params is a keyed array of parameters to send with the API call.
-            } catch (Exception $e) {
-                $arr[$i] = array('error' => $e->getMessage());
-            }
-        }
-
-
         return $this->container['theme']
             ->with([
-                'content' => View::make('page/home')->with(['results' => $arr]),
+                'content' => View::make('page/home')->with(['results' => $results['data']]),
                 'page' => 'Home',
             ])
             ->renderInto($response);
 
+    }
 
-        //return $this->container['theme']->with(['content' => View::make('page/login') ->with(['displayError' => $displayError]), 'page' => 'Login'])->renderInto($response);
+    public function item(Request $request, Response $response)
+    {
+        $postVar = $request->getParsedbody();
+
+        $bdb = new \Pintlabs_Service_Brewerydb($apikey);
+        $bdb->setFormat('php'); // if you want to get php back.  'xml' and 'json' are also valid options.
+        $params = array();
+        $results = "";
+
+        try {
+            $results = $bdb->request('search', $params, 'GET'); // where $params is a keyed array of parameters to send with the API call.
+        } catch (Exception $e) {
+            $results = array('error' => $e->getMessage());
+        }
+
+        return $this->container['theme']
+            ->with([
+                'content' => View::make('page/beer')->with(['results' => $results['data']]),
+                'page' => 'Home',
+            ])
+            ->renderInto($response);
+
     }
 
 }
